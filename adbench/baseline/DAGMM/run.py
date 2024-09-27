@@ -111,14 +111,21 @@ class DAGMM():
 
         return self
 
+    def predict_label(self, X_train, X_test):
+        data = {'X_train': X_train, 'X_test': X_test}
+
+        # predicting
+        score,threshold,_ = eval(self.model.model, data, self.device, self.args.n_gmm, self.args.batch_size)
+        self.threshold_=threshold
+        return score
+
     def predict_score(self, X_train, X_test):
         data = {'X_train': X_train, 'X_test': X_test}
 
         # predicting
-        score,threshold = eval(self.model.model, data, self.device, self.args.n_gmm, self.args.batch_size)
+        _,threshold,score = eval(self.model.model, data, self.device, self.args.n_gmm, self.args.batch_size)
         self.threshold_=threshold
         return score
-
 # X_train=np.random.randn(5000, 16)
 # X_test=np.random.randn(2000, 16)
 #

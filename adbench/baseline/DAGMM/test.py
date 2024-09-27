@@ -72,7 +72,7 @@ def eval(model, data, device, n_gmm, batch_size):
 
     threshold = np.percentile(scores_total, 100 - 10)
     pred = (energy_test > threshold).astype(int)
-    return pred,threshold
+    return pred,threshold,energy_test
     # gt = labels_test.astype(int)
     # precision, recall, f_score, _ = prf(gt, pred, average='binary')
     # print("Precision : {:0.4f}, Recall : {:0.4f}, F-score : {:0.4f}".format(precision, recall, f_score))
@@ -80,7 +80,7 @@ def eval(model, data, device, n_gmm, batch_size):
     # return labels_total, scores_total
 
 
-# def eval(model, data, device, n_gmm, batch_size):
+# def eval_score(model, data, device, n_gmm, batch_size):
 #     """Testing the DAGMM model"""
 #     X_train = data['X_train']
 #     X_test = data['X_test']

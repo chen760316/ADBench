@@ -15,7 +15,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.impute import KNNImputer
 from lime.lime_tabular import LimeTabularExplainer
 from adbench.baseline.Supervised import supervised
-from catboost import CatBoostClassifier
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
@@ -118,16 +117,16 @@ test_positive_indices = np.where(y_test == min_label)[0]
 y_semi_test[test_positive_indices] = 1
 
 # choice CatB异常检测器
-out_clf = supervised(seed=42,model_name='CatB')
-out_clf_noise = supervised(seed=42,model_name='CatB')
+out_clf = supervised(seed=random_state,model_name='CatB')
+out_clf_noise = supervised(seed=random_state,model_name='CatB')
 
 # choice LGB异常检测器
-#out_clf = supervised(seed=42,model_name='LGB')
-#out_clf_noise = supervised(seed=42,model_name='LGB')
+#out_clf = supervised(seed=random_state,model_name='LGB')
+#out_clf_noise = supervised(seed=random_state,model_name='LGB')
 
 # choice XGB异常检测器
-#out_clf = supervised(seed=42,model_name='XGB')
-#out_clf_noise = supervised(seed=42,model_name='XGB')
+#out_clf = supervised(seed=random_state,model_name='XGB')
+#out_clf_noise = supervised(seed=random_state,model_name='XGB')
 
 
 out_clf.fit(X_train, y_semi)
@@ -141,7 +140,7 @@ out_clf_noise.fit(X_train_copy, y_semi)
 
 print("*"*100)
 #train_scores = out_clf.decision_function(X_train)
-train_pred_labels = out_clf.predict_score(X_train)
+train_pred_labels = out_clf.predict_label(X_train)
 #print("训练集中异常值判定阈值为：", out_clf.threshold_)
 train_outliers_index = []
 print("训练集样本数：", len(X_train))
@@ -162,7 +161,7 @@ print("训练集中检测到的异常值比例：", len(train_outliers_index)/le
 
 print("*"*100)
 #test_scores = out_clf.decision_function(X_test)
-test_pred_labels = out_clf.predict_score(X_test)
+test_pred_labels = out_clf.predict_label(X_test)
 #print("测试集中异常值判定阈值为：", out_clf.threshold_)
 test_outliers_index = []
 print("测试集样本数：", len(X_test))
@@ -185,7 +184,7 @@ print("测试集中的异常值比例：", len(test_outliers_index)/len(X_test))
 
 print("*"*100)
 #train_scores_noise = out_clf_noise.decision_function(X_train_copy)
-train_pred_labels_noise = out_clf_noise.predict_score(X_train_copy)
+train_pred_labels_noise = out_clf_noise.predict_label(X_train_copy)
 # print("加噪训练集中异常值判定阈值为：", out_clf_noise.threshold_)
 train_outliers_index_noise = []
 print("加噪训练集样本数：", len(X_train_copy))
@@ -206,7 +205,7 @@ print("加噪训练集中的异常值比例：", len(train_outliers_index_noise)
 
 print("*"*100)
 #test_scores_noise = out_clf_noise.decision_function(X_test_copy)
-test_pred_labels_noise = out_clf_noise.predict_score(X_test_copy)
+test_pred_labels_noise = out_clf_noise.predict_label(X_test_copy)
 # print("加噪测试集中异常值判定阈值为：", out_clf_noise.threshold_)
 test_outliers_index_noise = []
 print("加噪测试集样本数：", len(X_test_copy))

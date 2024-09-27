@@ -39,6 +39,10 @@ class supervised():
 
         return self
 
-    def predict_score(self, X):
+    def predict_label(self, X):
         score = self.model.predict(X)
+        return score
+
+    def predict_score(self, X):
+        score = self.model.predict_proba(X)[:, 1]
         return score

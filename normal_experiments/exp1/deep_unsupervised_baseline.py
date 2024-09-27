@@ -97,9 +97,9 @@ random_state = 42
 
 # choice DAGMM异常检测器
 out_clf = DAGMM(seed=random_state)
-out_clf.fit(X_train,y_train)
+out_clf.fit(X_train,y_train=np.repeat(0, X_train.shape[0]))
 out_clf_noise = DAGMM(seed=random_state)
-out_clf_noise.fit(X_train_copy,y_train)
+out_clf_noise.fit(X_train_copy,y_train=np.repeat(0, X_train_copy.shape[0]))
 
 
 # SECTION 借助异常检测器，在训练集上进行异常值检测。
@@ -109,7 +109,7 @@ out_clf_noise.fit(X_train_copy,y_train)
 
 print("*"*100)
 #train_scores = out_clf.decision_function(X_train)
-train_pred_labels = out_clf.predict_score(X_train,X_train)
+train_pred_labels = out_clf.predict_label(X_train,X_train)
 print("训练集中异常值判定阈值为：", out_clf.threshold_)
 train_outliers_index = []
 print("训练集样本数：", len(X_train))
@@ -124,7 +124,7 @@ print("训练集中的异常值比例：", len(train_outliers_index)/len(X_train
 
 # subsection 从原始测试集中检测出异常值索引
 #test_scores = out_clf.decision_function(X_test)
-test_pred_labels = out_clf.predict_score(X_train, X_test)
+test_pred_labels = out_clf.predict_label(X_train, X_test)
 print("测试集中异常值判定阈值为：", out_clf.threshold_)
 test_outliers_index = []
 print("测试集样本数：", len(X_test))
@@ -140,7 +140,7 @@ print("测试集中的异常值比例：", len(test_outliers_index)/len(X_test))
 
 # subsection 从加噪训练集中检测出异常值索引
 #train_scores_noise = out_clf_noise.decision_function(X_train_copy)
-train_pred_labels_noise = out_clf_noise.predict_score(X_train_copy,X_train_copy )
+train_pred_labels_noise = out_clf_noise.predict_label(X_train_copy,X_train_copy )
 print("加噪训练集中异常值判定阈值为：", out_clf_noise.threshold_)
 train_outliers_index_noise = []
 print("加噪训练集样本数：", len(X_train_copy))
@@ -154,7 +154,7 @@ print("加噪训练集中的异常值比例：", len(train_outliers_index_noise)
 
 # subsection 从加噪测试集中检测出异常值索引
 #test_scores_noise = out_clf_noise.decision_function(X_test_copy)
-test_pred_labels_noise = out_clf_noise.predict_score(X_train_copy, X_test_copy)
+test_pred_labels_noise = out_clf_noise.predict_label(X_train_copy, X_test_copy)
 print("加噪测试集中异常值判定阈值为：", out_clf_noise.threshold_)
 test_outliers_index_noise = []
 print("加噪测试集样本数：", len(X_test_copy))
