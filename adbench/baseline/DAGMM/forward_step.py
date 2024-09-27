@@ -76,7 +76,8 @@ class ComputeLoss:
 
 class Cholesky(torch.autograd.Function):
     def forward(ctx, a):
-        l = torch.cholesky(a, False)
+        #l = torch.cholesky(a, False)
+        l = torch.linalg.cholesky(a)
         ctx.save_for_backward(l)
         return l
     def backward(ctx, grad_output):

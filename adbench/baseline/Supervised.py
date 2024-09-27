@@ -9,6 +9,8 @@ from catboost import CatBoostClassifier
 
 from adbench.myutils import Utils
 
+
+
 class supervised():
     def __init__(self, seed:int, model_name:str=None):
         self.seed = seed
@@ -38,5 +40,5 @@ class supervised():
         return self
 
     def predict_score(self, X):
-        score = self.model.predict_proba(X)[:, 1]
+        score = self.model.predict(X)
         return score

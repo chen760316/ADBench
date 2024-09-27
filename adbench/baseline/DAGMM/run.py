@@ -20,6 +20,7 @@ class DAGMM():
         self.device = self.utils.get_device()  # get device
         self.seed = seed
         self.tune = tune
+        self.threshold_=0
 
         # hyper-parameter
         class Args:
@@ -35,6 +36,7 @@ class DAGMM():
         self.args.n_gmm = n_gmm
         self.args.lambda_energy = lambda_energy
         self.args.lambda_cov = lambda_cov
+
 
     def grid_search(self, X_train, y_train, ratio):
         '''
@@ -113,7 +115,8 @@ class DAGMM():
         data = {'X_train': X_train, 'X_test': X_test}
 
         # predicting
-        score = eval(self.model.model, data, self.device, self.args.n_gmm, self.args.batch_size)
+        score,threshold = eval(self.model.model, data, self.device, self.args.n_gmm, self.args.batch_size)
+        self.threshold_=threshold
         return score
 
 # X_train=np.random.randn(5000, 16)

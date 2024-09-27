@@ -1,4 +1,3 @@
-import nibabel as nib
 import click
 import torch
 import logging
