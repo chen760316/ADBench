@@ -1,0 +1,9 @@
+Recall,Dataset
+0.00376,../datasets/real_outlier/Cardiotocography.csv
+0.0101,../datasets/real_outlier/annthyroid.csv
+0,../datasets/real_outlier/optdigits.csv
+0.0171,../datasets/real_outlier/PageBlocks.csv
+0.00362,../datasets/real_outlier/pendigits.csv
+0.0371,../datasets/real_outlier/satellite.csv
+0.0185,../datasets/real_outlier/shuttle.csv
+0.0292,../datasets/real_outlier/yeast.csv

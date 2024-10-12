@@ -1,0 +1,13 @@
+Recall,Dataset
+0.0661,../datasets/real_outlier_varying_ratios/Annthyroid/Annthyroid_02_v01.csv
+0.0629,../datasets/real_outlier_varying_ratios/Annthyroid/Annthyroid_05_v01.csv
+0.0719,../datasets/real_outlier_varying_ratios/Annthyroid/Annthyroid_07.csv
+0,../datasets/real_outlier_varying_ratios/Cardiotocography/Cardiotocography_02_v01.csv
+0.102,../datasets/real_outlier_varying_ratios/Cardiotocography/Cardiotocography_05_v01.csv
+0.044,../datasets/real_outlier_varying_ratios/Cardiotocography/Cardiotocography_10_v01.csv
+0.0533,../datasets/real_outlier_varying_ratios/Cardiotocography/Cardiotocography_20_v01.csv
+0.0521,../datasets/real_outlier_varying_ratios/Cardiotocography/Cardiotocography_22.csv
+0.0759,../datasets/real_outlier_varying_ratios/PageBlocks/PageBlocks_02_v01.csv
+0.0837,../datasets/real_outlier_varying_ratios/PageBlocks/PageBlocks_05_v01.csv
+0.086,../datasets/real_outlier_varying_ratios/Wilt/Wilt_02_v01.csv
+0.069,../datasets/real_outlier_varying_ratios/Wilt/Wilt_05.csv
